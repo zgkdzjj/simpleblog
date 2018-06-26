@@ -1,16 +1,5 @@
-<h2><%= @post.title %></h2>
-<p><%= @post.body %></p>
-<hr>
-
-<%= link_to "Edit", edit_post_path(@post), :class => 'btn btn-default'%>
-<%= link_to "Delete", post_path(@post), 
-                        method: :delete,
-                        data: {confirm: 'Are you sure?'},
-                        :class => 'btn btn-danger' %>
-<hr>
-
-<h3>Add Comment</h3>
-<%= form_for([@post, @post.comments.build]) do |f| %>
+<h1>Edit Post</h1>
+<%= form_for :post, url: post_path(@post), method: :patch do |f| %>
     <% if @post.errors.any? %>
         <% @post.errors.full_messages.each do |msg| %>
             <div class='alert alert-danger'><%= msg %></div>
@@ -28,5 +17,3 @@
         <%= f.submit({:class => 'btn btn-primary'}) %>
     </p>
 <% end %>
-
-
